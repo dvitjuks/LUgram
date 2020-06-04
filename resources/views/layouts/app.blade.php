@@ -25,7 +25,7 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand d-flex" href="{{ url('/') }}">
+                <a class="navbar-brand d-flex" href="{{ url('/home') }}">
                     <div><img src="/logos/lulogo.png" class="pr-3" style="height: 35px; border-right:1px solid #333"></div>
                     <div class="pl-3 pt-1">LU gram</div>
                 </a>
