@@ -17,8 +17,27 @@
                     </a>
                 </div>
             </div>
-            <div class="pt-3" style="font-size: 20px">{{$post->caption}}</div>
+            <hr>
+            <div style="height: 500px">
+                <div class="pt-1 d-flex" style="font-size: 20px"><a href="/profile/{{$post->user->username}}" class="font-weight-bold pr-2" style="text-decoration:none; color:black">
+                        {{$post->user->username}}</a> {{$post->caption}}
+                </div>
+            </div>
+
+            <!--    <div class="col-12">
+                <div class="widget-area no-padding blank">
+                    <div class="status-upload">
+                        <form>
+                            <div class="form-group">
+                                <textarea placeholder="Add your comment here" class="form-control" id="comment" rows="3"></textarea>
+                                <button type="submit" class="btn btn-primary mt-2"><i class="fa fa-share"></i>Add comment</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+        -->
         </div>
     </div>
+</div>
 </div>
 @endsection

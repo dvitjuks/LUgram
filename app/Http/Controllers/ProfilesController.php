@@ -11,7 +11,8 @@ class ProfilesController extends Controller
     public function index($username)
     {;
         $user = User::where('username', $username)->firstOrFail();
-        return view('profiles/index', ['user' => $user]);
+        $follows = (auth()->user()) ? auth()->user()->following->contains($user->id) : false;
+        return view('profiles/index', compact('user', 'follows'));
     }
 
     public function edit($username)
@@ -43,5 +44,21 @@ class ProfilesController extends Controller
             auth()->user()->profile->update($data);
         }
         return redirect("/profile/{$user->username}");
+    }
+
+    public function followers($username)
+    {
+        $user = User::where('username', $username)->firstOrFail();
+        $users = User::where('username', $username)->firstOrFail()->profile->followers->pluck('username');
+        $followers = User::whereIn('username', $users)->orderBy('created_at', 'desc')->get();
+        return view('/profiles/followers', array_merge(compact('followers'), ['main' => $user]));
+    }
+
+    public function following($username)
+    {
+        $user = User::where('username', $username)->firstOrFail();
+        $users = User::where('username', $username)->firstOrFail()->following->pluck('user.username');
+        $following = User::whereIn('username', $users)->orderBy('created_at', 'desc')->get();
+        return view('/profiles/following', array_merge(compact('following'), ['main' => $user]));
     }
 }

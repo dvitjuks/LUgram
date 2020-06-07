@@ -11,3 +11,10 @@
 a {
     outline: 0;
 }
+
+.btn:focus,
+.btn:active,
+textarea {
+    outline: none !important;
+    box-shadow: none;
+}

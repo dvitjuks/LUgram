@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'LUgram') }}</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -25,10 +25,17 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand d-flex" href="{{ url('/home') }}">
+                @guest
+                <a class="navbar-brand d-flex" href="/">
                     <div><img src="/logos/lulogo.png" class="pr-3" style="height: 35px; border-right:1px solid #333"></div>
                     <div class="pl-3 pt-1">LU gram</div>
                 </a>
+                @else
+                <a class="navbar-brand d-flex" href="/home">
+                    <div><img src="/logos/lulogo.png" class="pr-3" style="height: 35px; border-right:1px solid #333"></div>
+                    <div class="pl-3 pt-1">LU gram</div>
+                </a>
+                @endguest
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -52,12 +59,16 @@
                         </li>
                         @endif
                         @else
+                        <li class="nav-item pt-1"><img src="/storage/{{Auth::user()->profile->image}}" class="rounded-circle w-100" style="max-width: 30px" alt=""></li>
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 {{ Auth::user()->username }} <span class="caret"></span>
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="/profile/{{ Auth::user()->username }}">
+                                    {{ __('Profile') }}
+                                </a>
                                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}

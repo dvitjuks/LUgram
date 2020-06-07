@@ -44,12 +44,18 @@ class User extends Authenticatable
             $user->profile()->create([
                 'title' => 'Default title',
                 'description' => 'Please add description here',
+                'image' => 'profile/default_profile.jpg'
             ]);
         });
     }
     public function posts()
     {
         return $this->hasMany(Post::class)->orderBy('created_at', 'desc');
+    }
+
+    public function following()
+    {
+        return $this->belongsToMany(Profile::class);
     }
 
     public function profile()

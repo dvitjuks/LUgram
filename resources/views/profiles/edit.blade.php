@@ -40,7 +40,7 @@
                     <label for="url" class="col-md-4 col-form-label">{{ __('URL') }}</label>
 
 
-                    <input id="url" name="url" type="text" class="form-control @error('url') is-invalid @enderror" value="{{ old('url') ?? $user->profile->url }}" required>
+                    <input id="url" name="url" type="text" class="form-control @error('url') is-invalid @enderror" value="{{ old('url') ?? $user->profile->url }}">
 
                     @error('url')
                     <span class="invalid-feedback" role="alert">

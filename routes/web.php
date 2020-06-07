@@ -13,16 +13,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Auth::routes();
+
+Route::post('follow/{user}', 'FollowsController@store');
+
 Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
-
-Route::get('/post/create', 'PostsController@create')->name('post.create');
+Route::get('/home', 'PostsController@index')->middleware('auth');
+Route::get('/post/create', 'PostsController@create')->middleware('auth')->name('post.create');
 Route::get('/post/{post}', 'PostsController@show')->name('post.show');
-Route::post('/post', 'PostsController@store')->name('post.store');
+Route::post('/post', 'PostsController@store')->middleware('auth')->name('post.store');
 
 Route::get('/profile/{username}', 'ProfilesController@index')->name('profile.show');
-Route::get('/profile/{username}/edit', 'ProfilesController@edit')->name('profile.edit');
 Route::patch('/profile/{username}', 'ProfilesController@update')->name('profile.update');
+Route::get('/profile/{username}/edit', 'ProfilesController@edit')->name('profile.edit');
+Route::get('/profile/{username}/following', 'ProfilesController@following');
+Route::get('/profile/{username}/followers', 'ProfilesController@followers');
