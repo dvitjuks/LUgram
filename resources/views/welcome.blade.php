@@ -9,8 +9,10 @@
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <!-- Styles -->
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <style>
         html,
         body {
@@ -67,7 +69,7 @@
 </head>
 
 <body>
-    <div class="flex-center position-ref full-height">
+    <div class="flex-center position-ref full-height" id="top">
         @if (Route::has('login'))
         <div class="top-right links">
             @auth
@@ -83,22 +85,32 @@
         @endif
 
         <div class="content">
-            <div class="title m-b-md">
-                LUgram
+            <div class="title d-flex">
+                <img src="/logos/lulogo.png" class="pr-3" style="height: 150px">
+                <div style="color:black; font-weight: bold; letter-spacing: 5px">LUgram</div>
             </div>
-
+            <hr>
             <div class="links">
-                <a href="https://laravel.com/docs">Docs</a>
-                <a href="https://laracasts.com">Laracasts</a>
-                <a href="https://laravel-news.com">News</a>
-                <a href="https://blog.laravel.com">Blog</a>
-                <a href="https://nova.laravel.com">Nova</a>
-                <a href="https://forge.laravel.com">Forge</a>
-                <a href="https://vapor.laravel.com">Vapor</a>
-                <a href="https://github.com/laravel/laravel">GitHub</a>
+                <div class="pt-2" style="font-weight: 700; font-size: 30px; color: black">See what other people are posting:</div>
             </div>
         </div>
+
     </div>
+    <a style="text-decoration: none; color: white" href="#top">
+        <div class="btn btn-secondary" style="position: fixed; z-index:99; bottom: 30px; right: 30px; background-color: #333"><span class="pt-1 material-icons">
+                navigation
+            </span></div>
+    </a>
+    <div class="container">
+        <div class="row pt-2">
+            @foreach(App\Post::orderBy('created_at','desc')->get() as $post)
+            <div class="col-4 pb-4">
+                <a href="/post/{{$post->id}}"><img src="/storage/{{$post->image}}" class="w-100" style="max-width: 30vw;"></a>
+            </div>
+            @endforeach
+        </div>
+    </div>
+
 </body>
 
 </html>

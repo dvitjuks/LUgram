@@ -10932,6 +10932,10 @@ a {
   outline: 0;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 .btn:focus,
 .btn:active,
 textarea {

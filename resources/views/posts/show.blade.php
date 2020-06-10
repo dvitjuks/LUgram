@@ -7,7 +7,7 @@
             <img src="/storage/{{$post->image}}" class="w-100">
         </div>
         <div class="col-4">
-            <div class="d-flex align-items-bottom">
+            <div class="d-flex align-items-center">
                 <div>
                     <a href="/profile/{{$post->user->username}}"><img src="/storage/{{$post->user->profile->image}}" class="w-100 rounded-circle" style="height: 40px"></a>
                 </div>
@@ -15,6 +15,9 @@
                     <a href="/profile/{{$post->user->username}}" style="text-decoration:none; color:black">
                         <h2>{{$post->user->username}}</h2>
                     </a>
+                </div>
+                <div>
+                    <follow-button user-id="{{$post->user->id}}" follows="{{$follows}}"></follow-button>
                 </div>
             </div>
             <hr>
