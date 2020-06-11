@@ -17,7 +17,10 @@
                     </a>
                 </div>
                 <div>
+                    @if (Auth::check() && Auth::user()->username != $post->user->username)
                     <follow-button user-id="{{$post->user->id}}" follows="{{$follows}}"></follow-button>
+                    @else
+                    @endif
                 </div>
             </div>
             <hr>
@@ -27,7 +30,7 @@
                 </div>
             </div>
 
-            <!--    <div class="col-12">
+            <div class="col-12">
                 <div class="widget-area no-padding blank">
                     <div class="status-upload">
                         <form>
@@ -38,9 +41,9 @@
                         </form>
                     </div>
                 </div>
-        -->
+
+            </div>
         </div>
     </div>
-</div>
 </div>
 @endsection
