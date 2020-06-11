@@ -21,9 +21,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
 Route::get('/home', 'PostsController@index')->middleware('auth');
 Route::get('/post/create', 'PostsController@create')->middleware('auth')->name('post.create');
 Route::get('/post/{post}', 'PostsController@show')->name('post.show');
+Route::post('/post/{post}/comment', 'CommentsController@create')->middleware('auth');
 Route::post('/post', 'PostsController@store')->middleware('auth')->name('post.store');
 
 Route::get('/profile/{username}', 'ProfilesController@index')->name('profile.show');

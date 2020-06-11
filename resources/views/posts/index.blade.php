@@ -27,7 +27,7 @@
     </div>
 </div>
 @else
-<div class="con">
+<div class="container">
     <div class="col-6 offset-3">
         <div class="d-flex align-items-center justify-content-center" style="font-size: 30px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase">Your timeline:</div>
         <hr style="border-bottom: 1px solid #333">
